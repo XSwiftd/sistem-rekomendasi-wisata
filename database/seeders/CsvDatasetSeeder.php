@@ -12,12 +12,12 @@ class CsvDatasetSeeder extends Seeder
 {
     public function run(): void
     {
-        // Nonaktifkan Foreign Key Check sementara untuk percepatan & keamanan truncate
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // Kosongkan tabel (SQLite-compatible)
+        DB::statement('PRAGMA foreign_keys = OFF;');
         Interaksi::truncate();
         Wisata::truncate();
         User::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('PRAGMA foreign_keys = ON;');
 
         // 1. Import Data Wisata (wisata_indonesia.csv)
         $wisataCsvPath = base_path('datasets/wisata_indonesia.csv');
