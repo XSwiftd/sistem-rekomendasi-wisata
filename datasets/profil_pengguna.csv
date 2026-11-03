@@ -1,0 +1,16 @@
+﻿user_id,nama_pengguna,usia,jenis_kelamin,domisili,minat_kategori,preferensi_anggaran,preferensi_kesulitan
+1,Pengguna 001,21,Perempuan,Yogyakarta,Alam;Pantai,Menengah,Mudah
+2,Pengguna 002,23,Laki-laki,Sleman,Budaya dan Sejarah;Kuliner,Rendah,Mudah
+3,Pengguna 003,19,Perempuan,Bantul,Petualangan;Alam,Menengah,Sedang
+4,Pengguna 004,25,Laki-laki,Jakarta,Keluarga;Budaya dan Sejarah,Menengah,Mudah
+5,Pengguna 005,22,Perempuan,Magelang,Budaya dan Sejarah;Alam,Rendah,Mudah
+6,Pengguna 006,28,Laki-laki,Surabaya,Alam;Petualangan,Tinggi,Sulit
+7,Pengguna 007,20,Perempuan,Semarang,Pantai;Alam,Menengah,Mudah
+8,Pengguna 008,24,Laki-laki,Denpasar,Pantai;Budaya dan Sejarah,Tinggi,Sedang
+9,Pengguna 009,30,Perempuan,Bandung,Keluarga;Alam,Menengah,Mudah
+10,Pengguna 010,18,Laki-laki,Yogyakarta,Petualangan;Pantai,Rendah,Sedang
+11,Pengguna 011,27,Perempuan,Medan,Alam;Budaya dan Sejarah,Menengah,Mudah
+12,Pengguna 012,32,Laki-laki,Makassar,Pantai;Alam,Tinggi,Sedang
+13,Pengguna 013,21,Perempuan,Solo,Budaya dan Sejarah;Keluarga,Rendah,Mudah
+14,Pengguna 014,26,Laki-laki,Malang,Petualangan;Alam,Menengah,Sulit
+15,Pengguna 015,29,Perempuan,Lombok,Pantai;Petualangan,Menengah,Sedang

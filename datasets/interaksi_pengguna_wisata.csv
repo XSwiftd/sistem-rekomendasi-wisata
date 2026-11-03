@@ -1,0 +1,152 @@
+﻿interaksi_id,user_id,wisata_id,jenis_interaksi,rating,ulasan,tanggal_interaksi
+1,1,5,rating,4.0,Senja dan suasana pantainya menyenangkan.,2026-01-01
+2,1,6,bookmark,,,2026-02-02
+3,1,6,rating,4.0,Pantainya bersih dan pasirnya bagus.,2026-02-02
+4,1,12,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-03-03
+5,1,14,bookmark,,,2026-04-04
+6,1,15,rating,5.0,Pemandangan tebing dan laut sangat bagus.,2026-05-05
+7,1,20,bookmark,,,2026-06-06
+8,1,20,rating,4.0,Danau luas dengan suasana yang tenang.,2026-06-06
+9,1,24,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-07-07
+10,1,25,bookmark,,,2026-08-08
+11,1,28,rating,5.0,Pantai dan kegiatan snorkeling sangat menyenangkan.,2026-09-09
+12,1,30,bookmark,,,2026-01-10
+13,1,30,rating,4.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-01-10
+14,2,1,bookmark,,,2026-01-01
+15,2,1,rating,5.0,Pemandangannya bagus dan suasananya menenangkan.,2026-01-01
+16,2,2,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-02-02
+17,2,3,bookmark,,,2026-03-03
+18,2,4,rating,4.0,Area bersejarah yang bagus untuk foto.,2026-04-04
+19,2,17,bookmark,,,2026-05-05
+20,2,17,rating,5.0,Bangunan tua dan museumnya menarik.,2026-05-05
+21,2,21,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-06-06
+22,2,22,bookmark,,,2026-07-07
+23,2,27,rating,5.0,Budaya lokalnya unik dan menarik dipelajari.,2026-08-08
+24,3,7,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-01-01
+25,3,8,bookmark,,,2026-02-02
+26,3,9,rating,5.0,Matahari terbitnya sangat indah.,2026-03-03
+27,3,11,bookmark,,,2026-04-04
+28,3,11,rating,4.0,Bisa melihat savana dan satwa liar.,2026-04-04
+29,3,23,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-05-05
+30,3,29,bookmark,,,2026-06-06
+31,3,30,rating,4.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-07-07
+32,3,19,bookmark,,,2026-08-08
+33,3,19,rating,4.0,Pengalaman melihat komodo sangat berkesan.,2026-08-08
+34,4,10,bookmark,,,2026-01-01
+35,4,16,rating,5.0,Menambah wawasan budaya Indonesia.,2026-02-02
+36,4,17,bookmark,,,2026-03-03
+37,4,17,rating,5.0,Bangunan tua dan museumnya menarik.,2026-03-03
+38,4,18,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-04-04
+39,4,22,bookmark,,,2026-05-05
+40,4,1,rating,5.0,Pemandangannya bagus dan suasananya menenangkan.,2026-06-06
+41,4,2,bookmark,,,2026-07-07
+42,4,2,rating,5.0,Bangunannya bersejarah dan menarik untuk dipelajari.,2026-07-07
+43,5,1,rating,4.0,Pemandangannya bagus dan suasananya menenangkan.,2026-01-01
+44,5,2,bookmark,,,2026-02-02
+45,5,2,rating,4.0,Bangunannya bersejarah dan menarik untuk dipelajari.,2026-02-02
+46,5,3,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-03-03
+47,5,4,bookmark,,,2026-04-04
+48,5,13,rating,5.0,Pura dan danaunya sangat fotogenik.,2026-05-05
+49,5,21,bookmark,,,2026-06-06
+50,5,21,rating,4.0,Ikon kota yang mudah dikunjungi.,2026-06-06
+51,5,22,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-07-07
+52,5,27,bookmark,,,2026-08-08
+53,6,7,bookmark,,,2026-01-01
+54,6,7,rating,5.0,Aktivitasnya seru dan berbeda.,2026-01-01
+55,6,8,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-02-02
+56,6,9,bookmark,,,2026-03-03
+57,6,11,rating,4.0,Bisa melihat savana dan satwa liar.,2026-04-04
+58,6,19,bookmark,,,2026-05-05
+59,6,19,rating,5.0,Pengalaman melihat komodo sangat berkesan.,2026-05-05
+60,6,23,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-06-06
+61,6,29,bookmark,,,2026-07-07
+62,6,30,rating,5.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-08-08
+63,7,5,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-01-01
+64,7,6,bookmark,,,2026-02-02
+65,7,12,rating,5.0,Cocok untuk menikmati sunset dan belajar selancar.,2026-03-03
+66,7,14,bookmark,,,2026-04-04
+67,7,14,rating,4.0,Pemandangan sawahnya asri.,2026-04-04
+68,7,15,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-05-05
+69,7,20,bookmark,,,2026-06-06
+70,7,24,rating,4.0,Air laut jernih dan cocok untuk snorkeling.,2026-07-07
+71,7,25,bookmark,,,2026-08-08
+72,7,25,rating,4.0,Keindahan bawah laut dan pulau-pulaunya luar biasa.,2026-08-08
+73,7,26,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-09-09
+74,7,28,bookmark,,,2026-01-10
+75,8,12,bookmark,,,2026-01-01
+76,8,13,rating,5.0,Pura dan danaunya sangat fotogenik.,2026-02-02
+77,8,14,bookmark,,,2026-03-03
+78,8,14,rating,5.0,Pemandangan sawahnya asri.,2026-03-03
+79,8,15,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-04-04
+80,8,24,bookmark,,,2026-05-05
+81,8,25,rating,5.0,Keindahan bawah laut dan pulau-pulaunya luar biasa.,2026-06-06
+82,8,28,bookmark,,,2026-07-07
+83,8,28,rating,5.0,Pantai dan kegiatan snorkeling sangat menyenangkan.,2026-07-07
+84,8,5,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-08-08
+85,9,10,rating,4.0,Pilihan rekreasi keluarga cukup lengkap.,2026-01-01
+86,9,16,bookmark,,,2026-02-02
+87,9,16,rating,4.0,Menambah wawasan budaya Indonesia.,2026-02-02
+88,9,18,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-03-03
+89,9,20,bookmark,,,2026-04-04
+90,9,23,rating,5.0,Udara sejuk dan pemandangan alamnya bagus.,2026-05-05
+91,9,30,bookmark,,,2026-06-06
+92,9,30,rating,4.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-06-06
+93,9,14,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-07-07
+94,10,5,bookmark,,,2026-01-01
+95,10,5,rating,5.0,Senja dan suasana pantainya menyenangkan.,2026-01-01
+96,10,6,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-02-02
+97,10,7,bookmark,,,2026-03-03
+98,10,9,rating,4.0,Matahari terbitnya sangat indah.,2026-04-04
+99,10,15,bookmark,,,2026-05-05
+100,10,15,rating,5.0,Pemandangan tebing dan laut sangat bagus.,2026-05-05
+101,10,24,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-06-06
+102,10,28,bookmark,,,2026-07-07
+103,11,1,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-01-01
+104,11,3,bookmark,,,2026-02-02
+105,11,8,rating,5.0,"Pemandangan alamnya luar biasa, perlu persiapan fisik.",2026-03-03
+106,11,13,bookmark,,,2026-04-04
+107,11,13,rating,4.0,Pura dan danaunya sangat fotogenik.,2026-04-04
+108,11,20,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-05-05
+109,11,23,bookmark,,,2026-06-06
+110,11,27,rating,4.0,Budaya lokalnya unik dan menarik dipelajari.,2026-07-07
+111,11,30,bookmark,,,2026-08-08
+112,11,30,rating,4.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-08-08
+113,12,12,bookmark,,,2026-01-01
+114,12,15,rating,5.0,Pemandangan tebing dan laut sangat bagus.,2026-02-02
+115,12,19,bookmark,,,2026-03-03
+116,12,19,rating,5.0,Pengalaman melihat komodo sangat berkesan.,2026-03-03
+117,12,24,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-04-04
+118,12,25,bookmark,,,2026-05-05
+119,12,26,rating,5.0,Tempat santai sore sambil mencoba kuliner lokal.,2026-06-06
+120,12,28,bookmark,,,2026-07-07
+121,12,28,rating,5.0,Pantai dan kegiatan snorkeling sangat menyenangkan.,2026-07-07
+122,13,1,rating,4.0,Pemandangannya bagus dan suasananya menenangkan.,2026-01-01
+123,13,2,bookmark,,,2026-02-02
+124,13,2,rating,4.0,Bangunannya bersejarah dan menarik untuk dipelajari.,2026-02-02
+125,13,3,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-03-03
+126,13,4,bookmark,,,2026-04-04
+127,13,10,rating,5.0,Pilihan rekreasi keluarga cukup lengkap.,2026-05-05
+128,13,16,bookmark,,,2026-06-06
+129,13,16,rating,4.0,Menambah wawasan budaya Indonesia.,2026-06-06
+130,13,17,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-07-07
+131,13,22,bookmark,,,2026-08-08
+132,14,7,bookmark,,,2026-01-01
+133,14,7,rating,5.0,Aktivitasnya seru dan berbeda.,2026-01-01
+134,14,8,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-02-02
+135,14,9,bookmark,,,2026-03-03
+136,14,11,rating,4.0,Bisa melihat savana dan satwa liar.,2026-04-04
+137,14,19,bookmark,,,2026-05-05
+138,14,19,rating,5.0,Pengalaman melihat komodo sangat berkesan.,2026-05-05
+139,14,23,rating,3.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-06-06
+140,14,29,bookmark,,,2026-07-07
+141,14,30,rating,5.0,Tebing dan air terjunnya indah untuk dijelajahi.,2026-08-08
+142,15,5,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-01-01
+143,15,6,bookmark,,,2026-02-02
+144,15,7,rating,5.0,Aktivitasnya seru dan berbeda.,2026-03-03
+145,15,12,bookmark,,,2026-04-04
+146,15,12,rating,4.0,Cocok untuk menikmati sunset dan belajar selancar.,2026-04-04
+147,15,15,rating,2.0,"Tempat cukup menarik, tetapi belum sepenuhnya sesuai preferensi saya.",2026-05-05
+148,15,24,bookmark,,,2026-06-06
+149,15,25,rating,4.0,Keindahan bawah laut dan pulau-pulaunya luar biasa.,2026-07-07
+150,15,28,bookmark,,,2026-08-08
+151,15,28,rating,4.0,Pantai dan kegiatan snorkeling sangat menyenangkan.,2026-08-08
