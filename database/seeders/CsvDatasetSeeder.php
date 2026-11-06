@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Wisata;
 use App\Models\User;
 use App\Models\Interaksi;
@@ -12,12 +12,14 @@ class CsvDatasetSeeder extends Seeder
 {
     public function run(): void
     {
-        // Kosongkan tabel (SQLite-compatible)
-        DB::statement('PRAGMA foreign_keys = OFF;');
+        // Gunakan sintaks MySQL / MariaDB untuk menonaktifkan Foreign Key Check
+        Schema::disableForeignKeyConstraints();
+
         Interaksi::truncate();
         Wisata::truncate();
         User::truncate();
-        DB::statement('PRAGMA foreign_keys = ON;');
+
+        Schema::enableForeignKeyConstraints();
 
         // 1. Import Data Wisata (wisata_indonesia.csv)
         $wisataCsvPath = base_path('datasets/wisata_indonesia.csv');
@@ -26,7 +28,6 @@ class CsvDatasetSeeder extends Seeder
             $header = fgetcsv($file); // Skip baris header CSV
 
             while (($row = fgetcsv($file)) !== false) {
-                // Pastikan indeks kolom sesuai susunan CSV
                 Wisata::create([
                     'wisata_id'         => $row[0],
                     'nama_wisata'       => $row[1],
