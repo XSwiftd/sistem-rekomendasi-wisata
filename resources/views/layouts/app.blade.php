@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Typography: Instrument Serif (editorial headings) + Plus Jakarta Sans (body) -->
+    <!-- Typography: Instrument Serif + Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5.3 CSS -->
@@ -19,13 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        /* ============================================
-           DESIGN SYSTEM — NusaTripRec Premium
-           Indonesian Heritage × Modern Minimalist
-           ============================================ */
-
         :root {
-            /* Color Palette */
             --navy:          #0B1D3A;
             --navy-mid:      #152D50;
             --navy-light:    #1E3A5F;
@@ -44,7 +38,6 @@
             --muted-light:   #CBD5E1;
             --border:        rgba(11, 29, 58, 0.07);
 
-            /* Shadows — multi-layered, diffused */
             --shadow-xs:  0 1px 2px rgba(11,29,58,0.04);
             --shadow-sm:  0 2px 8px -2px rgba(11,29,58,0.06), 0 1px 3px rgba(11,29,58,0.04);
             --shadow-md:  0 8px 24px -4px rgba(11,29,58,0.08), 0 2px 8px -2px rgba(11,29,58,0.03);
@@ -52,24 +45,19 @@
             --shadow-xl:  0 32px 64px -12px rgba(11,29,58,0.14), 0 8px 24px -6px rgba(11,29,58,0.05);
             --shadow-warm: 0 20px 48px -8px rgba(196,101,58,0.12), 0 4px 16px rgba(196,101,58,0.04);
 
-            /* Radii */
             --radius-sm:   12px;
             --radius-md:   20px;
             --radius-lg:   24px;
             --radius-xl:   32px;
             --radius-full: 100px;
 
-            /* Motion */
             --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
             --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
             --duration:    0.45s;
             --duration-fast: 0.25s;
         }
 
-        /* ---- Base & Typography ---- */
-
         *, *::before, *::after { box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -109,8 +97,7 @@
 
         ::selection { background: var(--sand-light); color: var(--navy); }
 
-        /* ---- Floating Glass Navbar ---- */
-
+        /* Floating Glass Navbar */
         .navbar-nusa {
             position: fixed;
             top: 0;
@@ -144,7 +131,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Brand */
         .brand-nusa {
             display: flex;
             align-items: center;
@@ -177,7 +163,6 @@
             color: var(--terracotta);
         }
 
-        /* Nav Links */
         .nav-links {
             display: flex;
             align-items: center;
@@ -206,7 +191,6 @@
             font-weight: 600;
         }
 
-        /* User Switcher */
         .user-pill {
             display: flex;
             align-items: center;
@@ -253,7 +237,6 @@
             color: var(--navy);
         }
 
-        /* User Dropdown */
         .user-dropdown {
             border: none;
             border-radius: var(--radius-md);
@@ -288,10 +271,8 @@
             color: var(--terracotta);
         }
 
-        /* Navbar spacer */
         .nav-spacer { height: 88px; }
 
-        /* Mobile navbar */
         .mobile-toggle {
             display: none;
             background: none;
@@ -335,8 +316,6 @@
             .nav-spacer { height: 72px; }
         }
 
-        /* ---- Flash Messages ---- */
-
         .flash-toast {
             border: none;
             border-radius: var(--radius-md);
@@ -361,8 +340,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* ---- Buttons ---- */
-
         .btn-terra {
             background: var(--terracotta);
             color: var(--white);
@@ -380,41 +357,6 @@
             box-shadow: 0 8px 24px rgba(196,101,58,0.3);
         }
 
-        .btn-terra-outline {
-            color: var(--terracotta);
-            border: 1.5px solid rgba(196,101,58,0.3);
-            background: transparent;
-            font-weight: 600;
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            transition: all var(--duration-fast) var(--ease-out);
-        }
-        .btn-terra-outline:hover {
-            background: var(--terracotta);
-            border-color: var(--terracotta);
-            color: var(--white);
-            box-shadow: var(--shadow-warm);
-        }
-
-        .btn-navy {
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            font-weight: 600;
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            box-shadow: 0 4px 14px rgba(11,29,58,0.2);
-            transition: all var(--duration-fast) var(--ease-out);
-        }
-        .btn-navy:hover {
-            background: var(--navy-mid);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(11,29,58,0.25);
-        }
-
-        /* ---- Cards — shared premium style ---- */
-
         .card-nusa {
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
@@ -428,50 +370,6 @@
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
         }
-        .card-nusa .card-visual {
-            overflow: hidden;
-            position: relative;
-        }
-        .card-nusa .card-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s var(--ease-out);
-        }
-        .card-nusa:hover .card-visual img {
-            transform: scale(1.06);
-        }
-        .card-nusa .card-visual::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(0deg, rgba(11,29,58,0.5) 0%, rgba(11,29,58,0.1) 40%, transparent 65%);
-            pointer-events: none;
-        }
-
-        /* ---- Pagination ---- */
-
-        .pagination .page-link {
-            border: none;
-            border-radius: var(--radius-sm);
-            margin: 0 3px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            color: var(--slate-light);
-            transition: all var(--duration-fast) var(--ease-smooth);
-            padding: 8px 14px;
-        }
-        .pagination .page-link:hover {
-            background: var(--ivory-warm);
-            color: var(--navy);
-        }
-        .pagination .page-item.active .page-link {
-            background: var(--navy);
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(11,29,58,0.2);
-        }
-
-        /* ---- Footer ---- */
 
         .footer-nusa {
             margin-top: auto;
@@ -511,8 +409,6 @@
         }
         .footer-tag.accent { border-color: rgba(201,169,110,0.3); color: var(--sand); }
 
-        /* ---- Form Overrides ---- */
-
         .form-control, .form-select {
             border: 1.5px solid rgba(11,29,58,0.1);
             border-radius: var(--radius-sm);
@@ -527,15 +423,6 @@
             background-color: var(--white);
         }
 
-        /* ---- Utility ---- */
-
-        .text-terra { color: var(--terracotta) !important; }
-        .text-navy { color: var(--navy) !important; }
-        .text-sand { color: var(--sand) !important; }
-        .bg-ivory { background-color: var(--ivory) !important; }
-        .bg-ivory-warm { background-color: var(--ivory-warm) !important; }
-
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 3px; }
@@ -562,7 +449,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link-nusa {{ request()->is('bookmarks*') ? 'active' : '' }}" href="{{ url('/bookmarks') }}">
+                    <a class="nav-link-nusa {{ request()->is('bookmark*') ? 'active' : '' }}" href="{{ url('/bookmark') }}">
                         <i class="bi bi-bookmark me-1"></i> Tersimpan
                     </a>
                 </li>
@@ -622,7 +509,7 @@
             <a class="nav-link-nusa {{ request()->is('/') || request()->is('wisata*') ? 'active' : '' }}" href="{{ url('/') }}" style="font-size: 1rem; padding: 12px 18px;">
                 <i class="bi bi-compass me-2"></i> Jelajahi Destinasi
             </a>
-            <a class="nav-link-nusa {{ request()->is('bookmarks*') ? 'active' : '' }}" href="{{ url('/bookmarks') }}" style="font-size: 1rem; padding: 12px 18px;">
+            <a class="nav-link-nusa {{ request()->is('bookmark*') ? 'active' : '' }}" href="{{ url('/bookmark') }}" style="font-size: 1rem; padding: 12px 18px;">
                 <i class="bi bi-bookmark me-2"></i> Koleksi Tersimpan
             </a>
         </div>
@@ -684,7 +571,7 @@
                     <p class="user-pill-label mb-3" style="color: var(--muted);">Navigasi</p>
                     <div class="d-flex flex-column gap-2">
                         <a href="{{ url('/') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Jelajahi Destinasi</a>
-                        <a href="{{ url('/bookmarks') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Koleksi Tersimpan</a>
+                        <a href="{{ url('/bookmark') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Koleksi Tersimpan</a>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -708,13 +595,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Navbar scroll effect
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 32);
         }, { passive: true });
 
-        // Mobile nav
         function toggleMobileNav() {
             const overlay = document.getElementById('mobileOverlay');
             const drawer = document.getElementById('mobileDrawer');
@@ -724,7 +609,6 @@
             document.body.style.overflow = isOpen ? '' : 'hidden';
         }
 
-        // Auto-dismiss flash
         document.querySelectorAll('.flash-toast').forEach(el => {
             setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(-10px)'; setTimeout(() => el.remove(), 400); }, 4000);
         });

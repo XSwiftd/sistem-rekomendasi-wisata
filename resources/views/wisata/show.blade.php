@@ -310,7 +310,7 @@
                 <div class="hero-rating-pill">
                     <i class="bi bi-star-fill text-warning"></i>
                     {{ $wisata->avg_rating ? number_format($wisata->avg_rating, 1) : '—' }}
-                    <span class="fw-normal text-muted" style="font-size: 0.78rem;">({{ $wisata->total_ulasan }})</span>
+                    <span class="fw-normal text-muted" style="font-size: 0.78rem;">({{ $wisata->total_ulasan ?? 0 }})</span>
                 </div>
             </div>
 
@@ -325,7 +325,7 @@
                     </p>
                 </div>
 
-                <!-- Bookmark -->
+                <!-- Bookmark Button -->
                 <button type="button" id="btn-bookmark" data-id="{{ $wisata->wisata_id }}"
                         class="bookmark-btn {{ $isBookmarked ? 'saved' : 'not-saved' }}">
                     <i class="bi {{ $isBookmarked ? 'bi-bookmark-check-fill' : 'bi-bookmark-plus' }} me-1" id="icon-bookmark"></i>
@@ -398,12 +398,12 @@
                 </div>
             </div>
 
-            <!-- Reviews -->
+            <!-- Reviews List -->
             <div class="content-card">
                 <div class="d-flex justify-content-between align-items-start mb-4">
                     <div>
                         <h2 class="content-card-title mb-1">Ulasan Wisatawan</h2>
-                        <p class="text-muted mb-0" style="font-size: 0.85rem;">{{ $wisata->total_ulasan }} ulasan dari pengunjung</p>
+                        <p class="text-muted mb-0" style="font-size: 0.85rem;">{{ $wisata->total_ulasan ?? 0 }} ulasan dari pengunjung</p>
                     </div>
                     <div class="d-flex align-items-center gap-2 px-3 py-2 rounded-pill" style="background: var(--ivory-warm);">
                         <i class="bi bi-star-fill" style="color: var(--sand);"></i>
@@ -464,7 +464,7 @@
                         Rating ≥ 4 bintang akan melatih mesin <strong>Content-Based Filtering</strong> untuk rekomendasi yang lebih akurat.
                     </p>
 
-                    <form action="{{ url('/wisata/' . $wisata->wisata_id . '/rating') }}" method="POST" class="rating-form">
+                    <form action="{{ route('wisata.rating.store', $wisata->wisata_id) }}" method="POST" class="rating-form">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Skor Kepuasan</label>
@@ -534,4 +534,37 @@
     @endif
 
 </div>
+
+<script>
+document.getElementById('btn-bookmark')?.addEventListener('click', function () {
+    const id = this.getAttribute('data-id');
+    const btn = this;
+    const textSpan = document.getElementById('text-bookmark');
+    const icon = document.getElementById('icon-bookmark');
+
+    fetch("{{ route('bookmark.toggle') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ wisata_id: id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'added') {
+            btn.classList.remove('not-saved');
+            btn.classList.add('saved');
+            icon.className = 'bi bi-bookmark-check-fill me-1';
+            textSpan.textContent = 'Tersimpan';
+        } else if (data.status === 'removed') {
+            btn.classList.remove('saved');
+            btn.classList.add('not-saved');
+            icon.className = 'bi bi-bookmark-plus me-1';
+            textSpan.textContent = 'Simpan';
+        }
+    })
+    .catch(err => console.error('Error:', err));
+});
+</script>
 @endsection

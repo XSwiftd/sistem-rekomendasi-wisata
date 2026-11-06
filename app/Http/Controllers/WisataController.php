@@ -20,7 +20,7 @@ class WisataController extends Controller
             $q->where('jenis_interaksi', 'rating');
         }]);
 
-        // 1. Filter Pencarian Kata Kunci (Nama Wisata / Tags / Deskripsi)
+        // 1. Filter Pencarian Kata Kunci (Nama Wisata / Tags / Kabupaten Kota)
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -52,7 +52,7 @@ class WisataController extends Controller
         $kategoris = Wisata::select('kategori')->distinct()->orderBy('kategori')->pluck('kategori');
         $provinsis = Wisata::select('provinsi')->distinct()->orderBy('provinsi')->pluck('provinsi');
 
-        // Ambil daftar wisata_id yang sudah di-bookmark oleh user aktif (untuk status tombol bookmark)
+        // Ambil daftar wisata_id yang sudah di-bookmark oleh user aktif
         $bookmarkedIds = Interaksi::where('user_id', $activeUserId)
             ->where('jenis_interaksi', 'bookmark')
             ->pluck('wisata_id')
@@ -69,6 +69,7 @@ class WisataController extends Controller
             'rekomendasiWisatas'
         ));
     }
+
     public function show($id)
     {
         $activeUserId = session('active_user_id', 1);
@@ -101,7 +102,7 @@ class WisataController extends Controller
             ->where('jenis_interaksi', 'rating')
             ->first();
 
-        // Wisata serupa berdasarkan kategori yang sama (sebagai alternatif sebelum AI Recommender Fase 5 aktif)
+        // Wisata serupa berdasarkan kategori yang sama
         $wisataSerupa = Wisata::where('kategori', $wisata->kategori)
             ->where('wisata_id', '!=', $wisata->wisata_id)
             ->limit(4)

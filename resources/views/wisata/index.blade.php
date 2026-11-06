@@ -19,8 +19,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background:
-            url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        background: url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
         opacity: 0.35;
         transition: transform 8s ease;
     }
@@ -284,21 +283,13 @@
 
     /* ---- Responsive ---- */
     @media (max-width: 991.98px) {
-        .bento-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .bento-grid .wisata-card:first-child {
-            grid-column: span 2;
-        }
+        .bento-grid { grid-template-columns: repeat(2, 1fr); }
+        .bento-grid .wisata-card:first-child { grid-column: span 2; }
         .hero-content { padding: 36px 32px 64px; }
     }
     @media (max-width: 767.98px) {
-        .bento-grid {
-            grid-template-columns: 1fr;
-        }
-        .bento-grid .wisata-card:first-child {
-            grid-column: span 1;
-        }
+        .bento-grid { grid-template-columns: 1fr; }
+        .bento-grid .wisata-card:first-child { grid-column: span 1; }
         .bento-grid .wisata-card:first-child .card-visual { height: 240px; }
         .hero-editorial { min-height: 340px; }
         .hero-content { padding: 28px 24px 56px; }
@@ -380,7 +371,7 @@
     </div>
 
     <!-- Section: AI Recommendations Placeholder (Fase 5) -->
-    @if($rekomendasiWisatas->isNotEmpty())
+    @if(isset($rekomendasiWisatas) && $rekomendasiWisatas->isNotEmpty())
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
@@ -388,7 +379,6 @@
                     <h2 class="section-title">Rekomendasi Untuk Anda</h2>
                 </div>
             </div>
-            <!-- Grid Rekomendasi akan di-render di sini pada Fase 5 -->
         </div>
     @endif
 

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,23 +11,20 @@ use App\Http\Controllers\WisataController;
 |--------------------------------------------------------------------------
 */
 
-// 1. Route Beranda / Katalog Wisata (L2.2)
+// 1. Beranda & Katalog Wisata
 Route::get('/', [WisataController::class, 'index'])->name('wisata.index');
 
-// 2. Route Detail Wisata (L2.3)
+// 2. Detail Wisata
 Route::get('/wisata/{id}', [WisataController::class, 'show'])->name('wisata.show');
 
-// 3. Route Placeholder Submit Rating (akan diimplementasikan penuh oleh Anggota 3 di L3.2)
-Route::post('/wisata/{id}/rating', function ($id) {
-    return redirect()->route('wisata.show', $id)->with('error', 'Fitur rating belum aktif. Akan diimplementasikan di Fase 3.');
-})->name('wisata.rating');
+// 3. Fitur Bookmark (AJAX Toggle & Daftar Bookmark)
+Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
+Route::post('/bookmark/toggle', [BookmarkController::class, 'toggle'])->name('bookmark.toggle');
 
-// 4. Route Placeholder Toggle Bookmark (akan diimplementasikan penuh oleh Anggota 3 di L3.1)
-Route::post('/wisata/{id}/bookmark', function ($id) {
-    return response()->json(['message' => 'Fitur bookmark belum aktif. Akan diimplementasikan di Fase 3.'], 501);
-})->name('wisata.bookmark');
+// 4. Fitur Submit Rating & Ulasan (Menggunakan RatingController dari branch temanmu)
+Route::post('/wisata/{id}/rating', [RatingController::class, 'store'])->name('wisata.rating.store');
 
-// 5. Route Simulasi Switch User Aktif di Navbar (L2.1)
+// 5. Route Simulasi Switch User Aktif (Navbar Debugger)
 Route::get('/switch-user/{id}', function ($id) {
     session(['active_user_id' => (int) $id]);
     return redirect()->back()->with('success', "Berhasil beralih ke simulasi User ID #{$id}");
