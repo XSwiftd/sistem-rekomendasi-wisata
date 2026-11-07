@@ -2,74 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Interaksi;
+use App\Models\Bookmark;
 use App\Models\Wisata;
+use Illuminate\Http\Request;
 
 class BookmarkController extends Controller
 {
-    /**
-     * Menampilkan halaman daftar bookmark milik user.
-     */
     public function index()
     {
-        // Menggunakan user_id = 1 sebagai dummy active user untuk simulasi testing
-        $userId = auth()->id() ?? 1;
+        $activeUserId = session('active_user_id', 1);
 
-        $bookmarks = Interaksi::with('wisata')
-            ->where('user_id', $userId)
-            ->where('jenis_interaksi', 'bookmark')
-            ->orderBy('tanggal_interaksi', 'desc')
-            ->get();
+        // Ambil HANYA bookmark milik user yang sedang aktif
+        $bookmarks = Bookmark::with(['wisata' => function ($q) {
+            $q->withAvgRating();
+        }])
+        ->where('user_id', $activeUserId)
+        ->latest('bookmark_id')
+        ->paginate(9);
 
         return view('bookmarks.index', compact('bookmarks'));
     }
 
-    /**
-     * Toggle Bookmark via AJAX (Tambah jika belum ada, Hapus jika sudah ada).
-     */
-    public function toggle(Request $request)
+    public function toggle($wisataId)
     {
-        $request->validate([
-            'wisata_id' => 'required|exists:wisatas,wisata_id',
-        ]);
-
-        $userId = auth()->id() ?? 1;
-        $wisataId = $request->wisata_id;
-
-        // Cek apakah user sudah mem-bookmark wisata ini
-        $existingBookmark = Interaksi::where('user_id', $userId)
+        $activeUserId = session('active_user_id', 1);
+    
+        $bookmark = Bookmark::where('user_id', $activeUserId)
             ->where('wisata_id', $wisataId)
-            ->where('jenis_interaksi', 'bookmark')
             ->first();
-
-        if ($existingBookmark) {
-            // Jika sudah ada -> Hapus (Unbookmark)
-            $existingBookmark->delete();
-            return response()->json([
-                'status' => 'removed',
-                'message' => 'Wisata berhasil dihapus dari bookmark.',
-                'is_bookmarked' => false
-            ]);
+    
+        if ($bookmark) {
+            $bookmark->delete();
+            $status = 'removed';
+            $message = 'Wisata dihapus dari koleksi tersimpan.';
         } else {
-            // Generate interaksi_id baru (max ID + 1) untuk penanganan ID non-autoincrement
-            $maxId = Interaksi::max('interaksi_id') ?? 0;
-
-            Interaksi::create([
-                'interaksi_id'      => $maxId + 1,
-                'user_id'           => $userId,
-                'wisata_id'         => $wisataId,
-                'jenis_interaksi'   => 'bookmark',
-                'rating'            => null,
-                'ulasan'            => null,
-                'tanggal_interaksi' => now(),
+            Bookmark::create([
+                'user_id'   => $activeUserId,
+                'wisata_id' => $wisataId,
             ]);
-
+            $status = 'added';
+            $message = 'Wisata berhasil disimpan ke koleksi!';
+        }
+    
+        // Jika dipanggil via JavaScript (AJAX / Fetch)
+        if (request()->wantsJson() || request()->ajax()) {
             return response()->json([
-                'status' => 'added',
-                'message' => 'Wisata berhasil disimpan ke bookmark!',
-                'is_bookmarked' => true
+                'status'  => $status,
+                'message' => $message,
             ]);
         }
+    
+        return redirect()->back()->with('success', $message);
     }
 }

@@ -536,35 +536,44 @@
 </div>
 
 <script>
-document.getElementById('btn-bookmark')?.addEventListener('click', function () {
-    const id = this.getAttribute('data-id');
-    const btn = this;
-    const textSpan = document.getElementById('text-bookmark');
-    const icon = document.getElementById('icon-bookmark');
+document.addEventListener('DOMContentLoaded', function () {
+    const bookmarkBtn = document.getElementById('btn-bookmark');
+    
+    if (bookmarkBtn) {
+        bookmarkBtn.addEventListener('click', function () {
+            const wisataId = this.getAttribute('data-id');
+            const btn = this;
+            const textSpan = document.getElementById('text-bookmark');
+            const icon = document.getElementById('icon-bookmark');
 
-    fetch("{{ route('bookmark.toggle') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({ wisata_id: id })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === 'added') {
-            btn.classList.remove('not-saved');
-            btn.classList.add('saved');
-            icon.className = 'bi bi-bookmark-check-fill me-1';
-            textSpan.textContent = 'Tersimpan';
-        } else if (data.status === 'removed') {
-            btn.classList.remove('saved');
-            btn.classList.add('not-saved');
-            icon.className = 'bi bi-bookmark-plus me-1';
-            textSpan.textContent = 'Simpan';
-        }
-    })
-    .catch(err => console.error('Error:', err));
+            // Panggil URL /bookmark/{id} menggunakan Route Laravel
+            const url = "{{ url('/bookmark') }}/" + wisataId;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'added') {
+                    btn.classList.remove('not-saved');
+                    btn.classList.add('saved');
+                    icon.className = 'bi bi-bookmark-check-fill me-1';
+                    textSpan.textContent = 'Tersimpan';
+                } else if (data.status === 'removed') {
+                    btn.classList.remove('saved');
+                    btn.classList.add('not-saved');
+                    icon.className = 'bi bi-bookmark-plus me-1';
+                    textSpan.textContent = 'Simpan';
+                }
+            })
+            .catch(err => console.error('Bookmark Error:', err));
+        });
+    }
 });
 </script>
 @endsection

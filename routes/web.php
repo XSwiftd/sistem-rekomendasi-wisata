@@ -18,9 +18,9 @@ Route::get('/', [WisataController::class, 'index'])->name('wisata.index');
 Route::get('/wisata/{id}', [WisataController::class, 'show'])->name('wisata.show');
 
 // 3. Fitur Bookmark (AJAX Toggle & Daftar Bookmark)
-Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
-Route::post('/bookmark/toggle', [BookmarkController::class, 'toggle'])->name('bookmark.toggle');
 
+Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
+Route::post('/bookmark/{wisataId}', [BookmarkController::class, 'toggle'])->name('bookmark.toggle');
 // 4. Fitur Submit Rating & Ulasan (Menggunakan RatingController dari branch temanmu)
 Route::post('/wisata/{id}/rating', [RatingController::class, 'store'])->name('wisata.rating.store');
 
@@ -29,3 +29,6 @@ Route::get('/switch-user/{id}', function ($id) {
     session(['active_user_id' => (int) $id]);
     return redirect()->back()->with('success', "Berhasil beralih ke simulasi User ID #{$id}");
 })->name('switch.user');
+
+// Route untuk melihat riwayat ulasan & rating user aktif
+Route::get('/riwayat-rating', [WisataController::class, 'userRatings'])->name('wisata.user_ratings');

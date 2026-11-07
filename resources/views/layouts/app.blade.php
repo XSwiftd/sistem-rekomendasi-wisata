@@ -38,11 +38,11 @@
             --muted-light:   #CBD5E1;
             --border:        rgba(11, 29, 58, 0.07);
 
-            --shadow-xs:  0 1px 2px rgba(11,29,58,0.04);
-            --shadow-sm:  0 2px 8px -2px rgba(11,29,58,0.06), 0 1px 3px rgba(11,29,58,0.04);
-            --shadow-md:  0 8px 24px -4px rgba(11,29,58,0.08), 0 2px 8px -2px rgba(11,29,58,0.03);
-            --shadow-lg:  0 20px 48px -8px rgba(11,29,58,0.10), 0 4px 16px -4px rgba(11,29,58,0.04);
-            --shadow-xl:  0 32px 64px -12px rgba(11,29,58,0.14), 0 8px 24px -6px rgba(11,29,58,0.05);
+            --shadow-xs:   0 1px 2px rgba(11,29,58,0.04);
+            --shadow-sm:   0 2px 8px -2px rgba(11,29,58,0.06), 0 1px 3px rgba(11,29,58,0.04);
+            --shadow-md:   0 8px 24px -4px rgba(11,29,58,0.08), 0 2px 8px -2px rgba(11,29,58,0.03);
+            --shadow-lg:   0 20px 48px -8px rgba(11,29,58,0.10), 0 4px 16px -4px rgba(11,29,58,0.04);
+            --shadow-xl:   0 32px 64px -12px rgba(11,29,58,0.14), 0 8px 24px -6px rgba(11,29,58,0.05);
             --shadow-warm: 0 20px 48px -8px rgba(196,101,58,0.12), 0 4px 16px rgba(196,101,58,0.04);
 
             --radius-sm:   12px;
@@ -57,8 +57,13 @@
             --duration-fast: 0.25s;
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+        }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
 
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -74,6 +79,7 @@
             line-height: 1.65;
         }
 
+        /* Typography */
         h1, h2, h3, h4, .font-editorial {
             font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
             font-weight: 400;
@@ -92,10 +98,18 @@
         .font-sans { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-serif { font-family: 'Instrument Serif', Georgia, serif; }
 
-        a { color: var(--terracotta); transition: color var(--duration-fast) var(--ease-smooth); }
-        a:hover { color: var(--terracotta-dk); }
+        a { 
+            color: var(--terracotta); 
+            transition: color var(--duration-fast) var(--ease-smooth); 
+        }
+        a:hover { 
+            color: var(--terracotta-dk); 
+        }
 
-        ::selection { background: var(--sand-light); color: var(--navy); }
+        ::selection { 
+            background: var(--sand-light); 
+            color: var(--navy); 
+        }
 
         /* Floating Glass Navbar */
         .navbar-nusa {
@@ -138,7 +152,10 @@
             text-decoration: none;
             flex-shrink: 0;
         }
-        .brand-nusa:hover { text-decoration: none; }
+        .brand-nusa:hover { 
+            text-decoration: none; 
+        }
+        
         .brand-mark {
             width: 38px;
             height: 38px;
@@ -151,6 +168,7 @@
             font-size: 1.1rem;
             box-shadow: 0 4px 12px rgba(11,29,58,0.2);
         }
+
         .brand-wordmark {
             font-family: 'Instrument Serif', serif;
             font-size: 1.45rem;
@@ -171,6 +189,7 @@
             margin: 0;
             padding: 0;
         }
+
         .nav-link-nusa {
             color: var(--slate-light);
             font-weight: 500;
@@ -191,6 +210,7 @@
             font-weight: 600;
         }
 
+        /* User Switcher Pill */
         .user-pill {
             display: flex;
             align-items: center;
@@ -207,6 +227,7 @@
             border-color: var(--sand);
             box-shadow: var(--shadow-sm);
         }
+
         .user-avatar {
             width: 32px;
             height: 32px;
@@ -220,10 +241,12 @@
             font-size: 0.78rem;
             letter-spacing: 0.02em;
         }
+
         .user-pill-info {
             text-align: left;
             line-height: 1.15;
         }
+
         .user-pill-label {
             font-size: 0.6rem;
             text-transform: uppercase;
@@ -231,6 +254,7 @@
             color: var(--muted);
             font-weight: 600;
         }
+
         .user-pill-name {
             font-size: 0.82rem;
             font-weight: 600;
@@ -247,6 +271,7 @@
             overflow-y: auto;
             background: var(--white);
         }
+
         .user-dropdown .dropdown-header {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.68rem;
@@ -256,6 +281,7 @@
             font-weight: 700;
             padding: 10px 14px 6px;
         }
+
         .user-dropdown .dropdown-item {
             border-radius: var(--radius-sm);
             padding: 10px 14px;
@@ -273,6 +299,7 @@
 
         .nav-spacer { height: 88px; }
 
+        /* Mobile Nav & Drawer */
         .mobile-toggle {
             display: none;
             background: none;
@@ -282,6 +309,7 @@
             font-size: 1.4rem;
             cursor: pointer;
         }
+
         .mobile-nav-overlay {
             display: none;
             position: fixed;
@@ -290,6 +318,7 @@
             background: rgba(11, 29, 58, 0.3);
             backdrop-filter: blur(4px);
         }
+
         .mobile-nav-drawer {
             display: none;
             position: fixed;
@@ -304,6 +333,7 @@
             overflow-y: auto;
             animation: slideInRight 0.4s var(--ease-out);
         }
+
         @keyframes slideInRight {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
@@ -316,6 +346,7 @@
             .nav-spacer { height: 72px; }
         }
 
+        /* Flash Toast Notifications */
         .flash-toast {
             border: none;
             border-radius: var(--radius-md);
@@ -325,21 +356,25 @@
             font-size: 0.9rem;
             animation: slideDown 0.5s var(--ease-out);
         }
+
         .flash-toast.success {
             background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
             color: #065F46;
             border-left: 4px solid #059669;
         }
+
         .flash-toast.error {
             background: linear-gradient(135deg, #FEF2F2, #FECACA);
             color: #991B1B;
             border-left: 4px solid #DC2626;
         }
+
         @keyframes slideDown {
             from { transform: translateY(-16px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* Custom Button & Card Components */
         .btn-terra {
             background: var(--terracotta);
             color: var(--white);
@@ -371,18 +406,24 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* Footer */
         .footer-nusa {
             margin-top: auto;
             background: var(--navy);
             padding: 64px 0 40px;
         }
+
         .footer-brand {
             font-family: 'Instrument Serif', serif;
             font-size: 1.8rem;
             color: var(--white);
             letter-spacing: -0.03em;
         }
-        .footer-brand em { color: var(--sand); font-style: italic; }
+        .footer-brand em { 
+            color: var(--sand); 
+            font-style: italic; 
+        }
+
         .footer-divider {
             width: 48px;
             height: 2px;
@@ -391,12 +432,14 @@
             border: none;
             margin: 20px 0;
         }
+
         .footer-text {
             color: var(--muted);
             font-size: 0.85rem;
             line-height: 1.7;
             max-width: 420px;
         }
+
         .footer-tag {
             display: inline-block;
             padding: 5px 14px;
@@ -407,8 +450,12 @@
             font-weight: 600;
             letter-spacing: 0.3px;
         }
-        .footer-tag.accent { border-color: rgba(201,169,110,0.3); color: var(--sand); }
+        .footer-tag.accent { 
+            border-color: rgba(201,169,110,0.3); 
+            color: var(--sand); 
+        }
 
+        /* Form Controls */
         .form-control, .form-select {
             border: 1.5px solid rgba(11,29,58,0.1);
             border-radius: var(--radius-sm);
@@ -423,6 +470,7 @@
             background-color: var(--white);
         }
 
+        /* Scrollbar Styling */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 3px; }
@@ -435,17 +483,22 @@
     <!-- ====== FLOATING GLASS NAVBAR ====== -->
     <nav class="navbar-nusa" id="mainNav">
         <div class="navbar-inner">
-            <!-- Brand -->
+            <!-- Brand Logo -->
             <a class="brand-nusa" href="{{ url('/') }}">
                 <div class="brand-mark"><i class="bi bi-compass"></i></div>
                 <span class="brand-wordmark">NusaTrip<em>Rec</em></span>
             </a>
 
-            <!-- Desktop Nav Links -->
+            <!-- Desktop Navigation -->
             <ul class="nav-links desktop-nav">
                 <li>
                     <a class="nav-link-nusa {{ request()->is('/') || request()->is('wisata*') ? 'active' : '' }}" href="{{ url('/') }}">
                         <i class="bi bi-compass me-1"></i> Jelajahi
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link-nusa {{ request()->routeIs('wisata.user_ratings') ? 'active' : '' }}" href="{{ route('wisata.user_ratings') }}">
+                        <i class="bi bi-star me-1"></i> Riwayat Rating
                     </a>
                 </li>
                 <li>
@@ -455,13 +508,13 @@
                 </li>
             </ul>
 
-            <!-- User Switcher (Desktop) -->
+            <!-- Desktop Persona Switcher -->
             @php
-                $activeUserId = session('active_user_id', 1);
-                $allUsers = \App\Models\User::select('user_id', 'nama_pengguna', 'minat_kategori')->limit(15)->get();
-                $currentUser = $allUsers->firstWhere('user_id', $activeUserId) ?? $allUsers->first();
-                $initials = $currentUser ? strtoupper(mb_substr($currentUser->nama_pengguna, 0, 1)) : 'U';
-            @endphp
+    $activeUserId = session('active_user_id', 1);
+    $allUsers = \App\Models\User::select('user_id', 'nama_pengguna', 'minat_kategori')->orderBy('user_id', 'asc')->get();
+    $currentUser = \App\Models\User::find($activeUserId) ?? $allUsers->first();
+    $initials = $currentUser ? strtoupper(mb_substr($currentUser->nama_pengguna, 0, 1)) : 'U';
+@endphp
 
             <div class="dropdown desktop-user">
                 <button class="user-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -491,28 +544,33 @@
                 </ul>
             </div>
 
-            <!-- Mobile Toggle -->
-            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+            <!-- Mobile Toggle Button -->
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu Mobile">
                 <i class="bi bi-list"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Nav Drawer -->
+    <!-- ====== MOBILE NAVIGATION DRAWER ====== -->
     <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
     <div class="mobile-nav-drawer" id="mobileDrawer">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <span class="brand-wordmark">NusaTrip<em>Rec</em></span>
             <button class="mobile-toggle" onclick="toggleMobileNav()"><i class="bi bi-x-lg"></i></button>
         </div>
+        
         <div class="d-flex flex-column gap-2 mb-4">
             <a class="nav-link-nusa {{ request()->is('/') || request()->is('wisata*') ? 'active' : '' }}" href="{{ url('/') }}" style="font-size: 1rem; padding: 12px 18px;">
                 <i class="bi bi-compass me-2"></i> Jelajahi Destinasi
+            </a>
+            <a class="nav-link-nusa {{ request()->routeIs('wisata.user_ratings') ? 'active' : '' }}" href="{{ route('wisata.user_ratings') }}" style="font-size: 1rem; padding: 12px 18px;">
+                <i class="bi bi-star me-2"></i> Riwayat Rating Saya
             </a>
             <a class="nav-link-nusa {{ request()->is('bookmark*') ? 'active' : '' }}" href="{{ url('/bookmark') }}" style="font-size: 1rem; padding: 12px 18px;">
                 <i class="bi bi-bookmark me-2"></i> Koleksi Tersimpan
             </a>
         </div>
+
         <hr style="border-color: var(--border);">
         <p class="user-pill-label mb-2">Persona Aktif</p>
         <div class="d-flex flex-column gap-1" style="max-height: 240px; overflow-y: auto;">
@@ -532,7 +590,7 @@
     <!-- Navbar Spacer -->
     <div class="nav-spacer"></div>
 
-    <!-- Flash Messages -->
+    <!-- ====== FLASH MESSAGES ====== -->
     <div class="container mt-3">
         @if(session('success'))
             <div class="flash-toast success d-flex align-items-center" role="alert">
@@ -541,6 +599,7 @@
                 <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert" aria-label="Tutup" onclick="this.parentElement.remove()"></button>
             </div>
         @endif
+
         @if(session('error'))
             <div class="flash-toast error d-flex align-items-center" role="alert">
                 <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
@@ -550,7 +609,7 @@
         @endif
     </div>
 
-    <!-- Main Content -->
+    <!-- ====== MAIN CONTENT ====== -->
     <main class="flex-grow-1" style="padding-top: 12px; padding-bottom: 48px;">
         @yield('content')
     </main>
@@ -571,13 +630,14 @@
                     <p class="user-pill-label mb-3" style="color: var(--muted);">Navigasi</p>
                     <div class="d-flex flex-column gap-2">
                         <a href="{{ url('/') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Jelajahi Destinasi</a>
+                        <a href="{{ route('wisata.user_ratings') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Riwayat Rating</a>
                         <a href="{{ url('/bookmark') }}" class="text-decoration-none" style="color: var(--muted-light); font-size: 0.9rem;">Koleksi Tersimpan</a>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <p class="user-pill-label mb-3" style="color: var(--muted);">Teknologi</p>
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="footer-tag">Laravel</span>
+                        <span class="footer-tag">Laravel 11</span>
                         <span class="footer-tag">Bootstrap 5</span>
                         <span class="footer-tag accent">Python API</span>
                         <span class="footer-tag accent">TF-IDF</span>
@@ -586,7 +646,7 @@
             </div>
             <hr style="border-color: rgba(255,255,255,0.06); margin: 40px 0 20px;">
             <p class="text-center mb-0" style="color: rgba(148,163,184,0.5); font-size: 0.8rem;">
-                © {{ date('Y') }} NusaTripRec — Tugas Kelompok Sistem Rekomendasi
+                © {{ date('Y') }} NusaTripRec — Sistem Rekomendasi Wisata Indonesia
             </p>
         </div>
     </footer>
@@ -595,11 +655,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Navbar Scroll Effect
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 32);
         }, { passive: true });
 
+        // Mobile Drawer Toggle
         function toggleMobileNav() {
             const overlay = document.getElementById('mobileOverlay');
             const drawer = document.getElementById('mobileDrawer');
@@ -609,8 +671,13 @@
             document.body.style.overflow = isOpen ? '' : 'hidden';
         }
 
+        // Auto Dismiss Flash Notifications
         document.querySelectorAll('.flash-toast').forEach(el => {
-            setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(-10px)'; setTimeout(() => el.remove(), 400); }, 4000);
+            setTimeout(() => { 
+                el.style.opacity = '0'; 
+                el.style.transform = 'translateY(-10px)'; 
+                setTimeout(() => el.remove(), 400); 
+            }, 4000);
         });
     </script>
     @stack('scripts')

@@ -50,14 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
             const wisataId = this.getAttribute('data-id');
             const cardElement = document.getElementById(`bookmark-card-${wisataId}`);
 
-            fetch("{{ route('bookmark.toggle') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ wisata_id: wisataId })
-            })
+            const url = "{{ url('/bookmark') }}/" + wisataId;
+
+fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+    }
+})
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'removed') {

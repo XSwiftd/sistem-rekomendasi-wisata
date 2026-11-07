@@ -4,62 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\Wisata;
 use App\Models\Interaksi;
+use App\Services\RecommenderService;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
 {
+    protected RecommenderService $recommenderService;
+
+    public function __construct(RecommenderService $recommenderService)
+    {
+        $this->recommenderService = $recommenderService;
+    }
+
     public function index(Request $request)
     {
         $activeUserId = session('active_user_id', 1);
 
-        // Query dasar dengan rata-rata rating dan jumlah ulasan
-        $query = Wisata::withAvg(['interaksis as avg_rating' => function ($q) {
-            $q->where('jenis_interaksi', 'rating')->whereNotNull('rating');
-        }], 'rating')
-        ->withCount(['interaksis as total_ulasan' => function ($q) {
-            $q->where('jenis_interaksi', 'rating');
-        }]);
+        // Ambil Katalog Utama dengan Filter
+        $query = Wisata::withAvgRating();
 
-        // 1. Filter Pencarian Kata Kunci (Nama Wisata / Tags / Kabupaten Kota)
         if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('nama_wisata', 'like', "%{$search}%")
-                  ->orWhere('tags', 'like', "%{$search}%")
-                  ->orWhere('kabupaten_kota', 'like', "%{$search}%");
-            });
+            $query->search($request->search);
         }
 
-        // 2. Filter Kategori
         if ($request->filled('kategori')) {
             $query->where('kategori', $request->kategori);
         }
 
-        // 3. Filter Provinsi
         if ($request->filled('provinsi')) {
             $query->where('provinsi', $request->provinsi);
         }
 
-        // 4. Filter Tingkat Kesulitan
-        if ($request->filled('kesulitan')) {
-            $query->where('tingkat_kesulitan', $request->kesulitan);
-        }
+        $wisatas = $query->paginate(9)->withQueryString();
 
-        // Ambil data wisata dengan pagination (12 item per halaman)
-        $wisatas = $query->orderBy('wisata_id', 'asc')->paginate(12)->withQueryString();
+        // Data pendukung UI Filter
+        $kategoris = Wisata::select('kategori')->distinct()->pluck('kategori');
+        $provinsis = Wisata::select('provinsi')->distinct()->pluck('provinsi');
 
-        // Ambil daftar unik Kategori & Provinsi untuk dropdown filter
-        $kategoris = Wisata::select('kategori')->distinct()->orderBy('kategori')->pluck('kategori');
-        $provinsis = Wisata::select('provinsi')->distinct()->orderBy('provinsi')->pluck('provinsi');
+        // Safe Fallback jika tabel bookmarks belum di-migrate
+        $bookmarkedIds = class_exists(\App\Models\Bookmark::class) && \Schema::hasTable('bookmarks')
+            ? \App\Models\Bookmark::where('user_id', $activeUserId)->pluck('wisata_id')->toArray()
+            : [];
 
-        // Ambil daftar wisata_id yang sudah di-bookmark oleh user aktif
-        $bookmarkedIds = Interaksi::where('user_id', $activeUserId)
-            ->where('jenis_interaksi', 'bookmark')
-            ->pluck('wisata_id')
-            ->toArray();
-
-        // Placeholder variabel rekomendasi (akan diisi penuh pada Fase 5)
-        $rekomendasiWisatas = collect([]);
+        // Panggil Recommender Service dari Python API Engine
+        $rekomendasiWisatas = $this->recommenderService->getUserRecommendations($activeUserId, 6);
 
         return view('wisata.index', compact(
             'wisatas',
@@ -74,46 +62,71 @@ class WisataController extends Controller
     {
         $activeUserId = session('active_user_id', 1);
 
-        // Ambil detail wisata beserta rata-rata rating & total ulasan
-        $wisata = Wisata::withAvg(['interaksis as avg_rating' => function ($q) {
-                $q->where('jenis_interaksi', 'rating')->whereNotNull('rating');
-            }], 'rating')
-            ->withCount(['interaksis as total_ulasan' => function ($q) {
-                $q->where('jenis_interaksi', 'rating');
-            }])
-            ->findOrFail($id);
-
-        // Ambil daftar ulasan & rating dari user lain untuk wisata ini
+        $wisata = Wisata::withAvgRating()->findOrFail($id);
+        
         $ulasans = Interaksi::with('user')
             ->where('wisata_id', $id)
-            ->where('jenis_interaksi', 'rating')
-            ->orderBy('tanggal_interaksi', 'desc')
+            ->latest('tanggal_interaksi')
             ->get();
 
-        // Cek apakah user yang sedang aktif sudah mem-bookmark wisata ini
-        $isBookmarked = Interaksi::where('user_id', $activeUserId)
-            ->where('wisata_id', $id)
-            ->where('jenis_interaksi', 'bookmark')
-            ->exists();
-
-        // Cek apakah user yang sedang aktif sudah pernah memberi rating pada wisata ini
         $userRating = Interaksi::where('user_id', $activeUserId)
             ->where('wisata_id', $id)
-            ->where('jenis_interaksi', 'rating')
             ->first();
 
-        // Wisata serupa berdasarkan kategori yang sama
-        $wisataSerupa = Wisata::where('kategori', $wisata->kategori)
-            ->where('wisata_id', '!=', $wisata->wisata_id)
-            ->limit(4)
-            ->get();
+        // Safe Fallback jika tabel bookmarks belum di-migrate
+        $isBookmarked = class_exists(\App\Models\Bookmark::class) && \Schema::hasTable('bookmarks')
+            ? \App\Models\Bookmark::where('user_id', $activeUserId)->where('wisata_id', $id)->exists()
+            : false;
+
+        // Panggil Wisata Serupa dari Python API Engine (Item-to-Item)
+        $wisataSerupa = $this->recommenderService->getItemRecommendations($id, 4);
 
         return view('wisata.show', compact(
             'wisata',
             'ulasans',
-            'isBookmarked',
             'userRating',
+            'isBookmarked',
             'wisataSerupa'
         ));
     }
+
+    public function storeRating(Request $request, $id)
+    {
+        $request->validate([
+            'rating' => 'required|numeric|min:1|max:5',
+            'ulasan' => 'nullable|string|max:1000',
+        ]);
+
+        $activeUserId = session('active_user_id', 1);
+
+        Interaksi::updateOrCreate(
+            [
+                'user_id'   => $activeUserId,
+                'wisata_id' => $id,
+            ],
+            [
+                'rating'            => $request->rating,
+                'ulasan'            => $request->ulasan,
+                'tanggal_interaksi' => now(),
+            ]
+        );
+
+        // Trigger Retrain Model Python FastAPI
+        $this->recommenderService->triggerReloadModel();
+
+        return redirect()->back()->with('success', 'Penilaian Anda berhasil disimpan & mesin rekomendasi telah diperbarui!');
+    }
+
+    public function userRatings()
+{
+    $activeUserId = session('active_user_id', 1);
+
+    // Ambil semua ulasan & rating yang pernah diberikan oleh user aktif
+    $myRatings = Interaksi::with('wisata')
+        ->where('user_id', $activeUserId)
+        ->latest('tanggal_interaksi')
+        ->paginate(10);
+
+    return view('wisata.user_ratings', compact('myRatings'));
+}
 }
