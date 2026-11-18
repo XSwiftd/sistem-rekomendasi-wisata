@@ -18,8 +18,8 @@ class RatingController extends Controller
             'ulasan' => 'nullable|string|max:1000',
         ]);
 
-        // Fallback user dummy (ID = 1) untuk keperluan testing lokal
-        $userId = auth()->id() ?? 1;
+        // Gunakan user login atau persona aktif dari session (fallback ke ID = 1)
+        $userId = auth()->id() ?? session('active_user_id', 1);
 
         // Cari apakah user sudah pernah memberi rating pada wisata ini
         $interaksi = Interaksi::where('user_id', $userId)

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\RatingController;
@@ -26,8 +27,17 @@ Route::post('/wisata/{id}/rating', [RatingController::class, 'store'])->name('wi
 
 // 5. Route Simulasi Switch User Aktif (Navbar Debugger)
 Route::get('/switch-user/{id}', function ($id) {
-    session(['active_user_id' => (int) $id]);
-    return redirect()->back()->with('success', "Berhasil beralih ke simulasi User ID #{$id}");
+    $newId = (int) $id;
+    $oldId = session('active_user_id', 1);
+
+    // Hapus cache rekomendasi user lama dan user baru
+    // supaya halaman beranda langsung menampilkan rekomendasi yang segar
+    Cache::forget("recommendations_user_ids_{$oldId}_limit_6");
+    Cache::forget("recommendations_user_ids_{$newId}_limit_6");
+
+    session(['active_user_id' => $newId]);
+
+    return redirect()->back()->with('success', "Berhasil beralih ke simulasi User ID #{$newId}");
 })->name('switch.user');
 
 // Route untuk melihat riwayat ulasan & rating user aktif
